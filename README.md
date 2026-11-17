@@ -9,11 +9,31 @@ elevation model and textured 3D model in WebODM.
 ![MAVROS](https://img.shields.io/badge/MAVROS-1%20%7C%202-4a90d9)
 ![WebODM](https://img.shields.io/badge/WebODM-OpenDroneMap-3fae49)
 ![Python](https://img.shields.io/badge/Python-3.8%2B-3776ab)
-![Status](https://img.shields.io/badge/status-simulation%20verified-orange)
+![Real drone](https://img.shields.io/badge/real%20drone-flight%20tested-brightgreen)
+![Simulation](https://img.shields.io/badge/simulation-verified-blue)
+
+> **✅ Tested on a real drone.** The pipeline has been flown on real hardware — Pixhawk (ArduPilot) +
+> Raspberry Pi + IMX477 camera — with the photos processed in WebODM (see [Real-drone testing](#real-drone-testing)).
+> The improved version in this repository is fully verified in simulation; its real-drone validation follows
+> [FIELD_STEPS.md](FIELD_STEPS.md).
 
 ---
 
-## Demo
+## Real-drone testing
+
+**The system has been flight-tested on a real drone.** The original version of this pipeline was flown on the
+quadcopter below: it flew a mapping survey, captured aerial photos with the on-board Raspberry Pi camera,
+and the photos were processed into an orthophoto in WebODM and checked in QGIS.
+
+| The drone (Pixhawk + Raspberry Pi + IMX477) | Aerial photo taken by the drone | WebODM orthophoto opened in QGIS |
+|---|---|---|
+| ![Drone on the field](Fiver%20Project%204/real_drone_test/drone_on_field.jpg) | ![Aerial photo](Fiver%20Project%204/real_drone_test/aerial_photo_from_drone.jpg) | ![Orthophoto in QGIS](Fiver%20Project%204/real_drone_test/webodm_orthophoto_in_qgis.jpg) |
+
+That first field test showed what limited the map quality (timer-based photos with low overlap, no GPS or lens
+data in the photos, fast flight). The improved version fixes these points — see
+[Getting a good map](#getting-a-good-map) — and was verified end-to-end in simulation (below).
+
+## Simulation demo
 
 ▶ **[Watch the full demo video (4 min 43 s)](https://github.com/UnknownEng/webodm-based-mapping-algorithm-using-drone/releases/download/v1.0-simulation/survey_demo.mp4)** — the
 complete process in simulation: planning, autonomous flight with live drone camera and ROS 2 terminals,
@@ -148,9 +168,10 @@ simulation first, and follow your local drone regulations.
 
 ## Project status
 
+- ✅ **Flight-tested on a real drone** (Pixhawk + Raspberry Pi + IMX477) with the original pipeline — [photos](#real-drone-testing)
 - ✅ Code reviewed and improved; unit-tested against a simulated ArduPilot (13 / 13 scenarios)
-- ✅ Full pipeline verified in SITL + Gazebo + WebODM
-- ⏳ Real-drone validation — follow [FIELD_STEPS.md](FIELD_STEPS.md)
+- ✅ Improved pipeline verified end-to-end in SITL + Gazebo + WebODM
+- ⏳ Field flight of the improved version — follow [FIELD_STEPS.md](FIELD_STEPS.md)
 
 ## License
 
