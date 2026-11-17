@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.part
+
+# Large simulation results (regenerate with Simulation/gazebo/record_demo.sh + make_video.py)
+Fiver Project 4/Simulation/demo_output/*.mp4
+Fiver Project 4/Simulation/demo_output/*.tif
+Fiver Project 4/Simulation/demo_output/*.zip

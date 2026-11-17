@@ -1,0 +1,19 @@
+{
+  "altitude_m": 40.0,
+  "focal_mm": 6.0,
+  "sensor_w_mm": 6.287,
+  "sensor_h_mm": 4.712,
+  "side_overlap": 0.7,
+  "front_overlap": 0.75,
+  "line_spacing_m": 12.57,
+  "trigger_distance_m": 7.85,
+  "footprint_m": [
+    41.9,
+    31.4
+  ],
+  "gsd_cm_per_px": 1.03,
+  "utm_epsg": 32755,
+  "block_size_m": 200.0,
+  "speed_ms": 5.0,
+  "blocks": 1
+}

@@ -1,0 +1,16 @@
+# Extra ArduCopter SITL parameters for the survey simulation
+# 5 m/s survey speed (cm/s) - matches path_planner.py --speed 5
+WPNAV_SPEED 500
+# 2 m waypoint radius
+WPNAV_RADIUS 200
+# return home no lower than 30 m (tallest building is 22 m)
+RTL_ALT 3000
+# face the next waypoint -> camera long side across the flight line
+WP_YAW_BEHAVIOR 2
+# Telemetry streams on SERIAL0 (tcp:5760, used by MAVROS). The scripts also request them.
+SR0_POSITION 10
+SR0_EXTRA1 10
+SR0_EXTRA2 10
+SR0_EXTRA3 2
+SR0_EXT_STAT 2
+SR0_RAW_SENS 2

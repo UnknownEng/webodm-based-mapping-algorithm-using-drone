@@ -1,0 +1,671 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <model name="survey_town">
+    <static>true</static>
+    <link name="ground">
+      <collision name="ground_collision">
+        <geometry><plane><normal>0 0 1</normal><size>300.0 300.0</size></plane></geometry>
+      </collision>
+      <visual name="ground_visual">
+        <geometry><plane><normal>0 0 1</normal><size>300.0 300.0</size></plane></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.05 0.05 0.05 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/ground.jpg</albedo_map>
+            <roughness>1</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_0">
+      <pose>-29.42 -6.59 0 0 0 0.5236</pose>
+      <collision name="c"><pose>0 0 10.96 0 0 0</pose>
+        <geometry><box><size>14.05 14.64 21.92</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 10.96 0 0 0</pose>
+        <geometry><box><size>14.05 14.64 21.92</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_0.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 22.07 0 0 0</pose>
+        <geometry><box><size>14.45 15.04 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_0.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_1">
+      <pose>13.50 -54.73 0 0 0 -0.3491</pose>
+      <collision name="c"><pose>0 0 6.46 0 0 0</pose>
+        <geometry><box><size>8.43 14.18 12.93</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 6.46 0 0 0</pose>
+        <geometry><box><size>8.43 14.18 12.93</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_1.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 13.08 0 0 0</pose>
+        <geometry><box><size>8.83 14.58 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_1.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_2">
+      <pose>50.06 15.51 0 0 0 0.5236</pose>
+      <collision name="c"><pose>0 0 4.60 0 0 0</pose>
+        <geometry><box><size>14.17 13.96 9.21</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 4.60 0 0 0</pose>
+        <geometry><box><size>14.17 13.96 9.21</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_2.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 9.36 0 0 0</pose>
+        <geometry><box><size>14.57 14.36 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_2.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_3">
+      <pose>-15.34 -56.36 0 0 0 0.0000</pose>
+      <collision name="c"><pose>0 0 8.09 0 0 0</pose>
+        <geometry><box><size>9.47 19.61 16.18</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 8.09 0 0 0</pose>
+        <geometry><box><size>9.47 19.61 16.18</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_3.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 16.33 0 0 0</pose>
+        <geometry><box><size>9.87 20.01 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_3.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_4">
+      <pose>10.83 22.04 0 0 0 -0.3491</pose>
+      <collision name="c"><pose>0 0 9.00 0 0 0</pose>
+        <geometry><box><size>12.26 14.23 18.01</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 9.00 0 0 0</pose>
+        <geometry><box><size>12.26 14.23 18.01</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_4.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 18.16 0 0 0</pose>
+        <geometry><box><size>12.66 14.63 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_4.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_5">
+      <pose>37.26 -43.59 0 0 0 0.5236</pose>
+      <collision name="c"><pose>0 0 2.62 0 0 0</pose>
+        <geometry><box><size>13.03 17.78 5.24</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 2.62 0 0 0</pose>
+        <geometry><box><size>13.03 17.78 5.24</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_5.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 5.39 0 0 0</pose>
+        <geometry><box><size>13.43 18.18 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_5.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_6">
+      <pose>-32.83 -36.18 0 0 0 0.0000</pose>
+      <collision name="c"><pose>0 0 5.44 0 0 0</pose>
+        <geometry><box><size>12.36 10.15 10.88</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 5.44 0 0 0</pose>
+        <geometry><box><size>12.36 10.15 10.88</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_6.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 11.03 0 0 0</pose>
+        <geometry><box><size>12.76 10.55 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_6.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_7">
+      <pose>-10.62 31.68 0 0 0 0.5236</pose>
+      <collision name="c"><pose>0 0 3.46 0 0 0</pose>
+        <geometry><box><size>17.78 16.76 6.92</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 3.46 0 0 0</pose>
+        <geometry><box><size>17.78 16.76 6.92</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_7.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 7.07 0 0 0</pose>
+        <geometry><box><size>18.18 17.16 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_7.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_8">
+      <pose>49.60 36.24 0 0 0 0.0000</pose>
+      <collision name="c"><pose>0 0 10.28 0 0 0</pose>
+        <geometry><box><size>18.53 14.28 20.57</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 10.28 0 0 0</pose>
+        <geometry><box><size>18.53 14.28 20.57</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_8.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 20.72 0 0 0</pose>
+        <geometry><box><size>18.93 14.68 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_8.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_9">
+      <pose>-56.37 -57.57 0 0 0 0.0000</pose>
+      <collision name="c"><pose>0 0 4.09 0 0 0</pose>
+        <geometry><box><size>11.03 10.98 8.19</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 4.09 0 0 0</pose>
+        <geometry><box><size>11.03 10.98 8.19</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_9.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 8.34 0 0 0</pose>
+        <geometry><box><size>11.43 11.38 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_9.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_10">
+      <pose>-56.80 18.10 0 0 0 0.5236</pose>
+      <collision name="c"><pose>0 0 10.53 0 0 0</pose>
+        <geometry><box><size>10.58 14.76 21.06</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 10.53 0 0 0</pose>
+        <geometry><box><size>10.58 14.76 21.06</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_10.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 21.21 0 0 0</pose>
+        <geometry><box><size>10.98 15.16 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_10.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_11">
+      <pose>-12.71 -32.74 0 0 0 0.0000</pose>
+      <collision name="c"><pose>0 0 6.78 0 0 0</pose>
+        <geometry><box><size>9.50 8.40 13.56</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 6.78 0 0 0</pose>
+        <geometry><box><size>9.50 8.40 13.56</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_11.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 13.71 0 0 0</pose>
+        <geometry><box><size>9.90 8.80 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_11.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_12">
+      <pose>39.31 -3.16 0 0 0 -0.3491</pose>
+      <collision name="c"><pose>0 0 5.67 0 0 0</pose>
+        <geometry><box><size>17.21 13.50 11.35</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 5.67 0 0 0</pose>
+        <geometry><box><size>17.21 13.50 11.35</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_12.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 11.50 0 0 0</pose>
+        <geometry><box><size>17.61 13.90 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_12.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="building_13">
+      <pose>55.41 -56.91 0 0 0 0.2618</pose>
+      <collision name="c"><pose>0 0 6.53 0 0 0</pose>
+        <geometry><box><size>10.20 9.98 13.06</size></box></geometry></collision>
+      
+      <visual name="walls">
+        <pose>0 0 6.53 0 0 0</pose>
+        <geometry><box><size>10.20 9.98 13.06</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/facade_13.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      
+      <visual name="roof">
+        <pose>0 0 13.21 0 0 0</pose>
+        <geometry><box><size>10.60 10.38 0.3</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><specular>0.1 0.1 0.1 1</specular>
+          <pbr><metal><albedo_map>model://survey_town/textures/roof_13.jpg</albedo_map><roughness>0.9</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+    <link name="tree_0">
+      <pose>-72.74 -6.27 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 2.41 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>4.81</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 4.81 0 0 0</pose>
+        <geometry><sphere><radius>2.26</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_1">
+      <pose>17.57 -14.05 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.04 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>6.09</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 6.09 0 0 0</pose>
+        <geometry><sphere><radius>3.19</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_2">
+      <pose>-50.86 63.57 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 4.23 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>8.47</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 8.47 0 0 0</pose>
+        <geometry><sphere><radius>2.94</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_3">
+      <pose>-67.58 24.50 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.50 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>7.00</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 7.00 0 0 0</pose>
+        <geometry><sphere><radius>3.11</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_4">
+      <pose>-42.93 68.00 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 4.22 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>8.43</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 8.43 0 0 0</pose>
+        <geometry><sphere><radius>1.99</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_5">
+      <pose>-27.72 -70.13 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 4.08 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>8.15</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 8.15 0 0 0</pose>
+        <geometry><sphere><radius>3.36</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_6">
+      <pose>73.47 16.79 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.66 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>7.33</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 7.33 0 0 0</pose>
+        <geometry><sphere><radius>2.95</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_7">
+      <pose>10.52 67.86 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.52 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>7.04</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 7.04 0 0 0</pose>
+        <geometry><sphere><radius>2.37</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_8">
+      <pose>1.93 -72.20 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.81 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>7.62</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 7.62 0 0 0</pose>
+        <geometry><sphere><radius>2.98</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_9">
+      <pose>-11.84 52.72 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.89 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>7.78</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 7.78 0 0 0</pose>
+        <geometry><sphere><radius>2.37</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_10">
+      <pose>-47.36 -29.41 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.12 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>6.24</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 6.24 0 0 0</pose>
+        <geometry><sphere><radius>3.38</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_11">
+      <pose>-33.24 59.79 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.70 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>7.40</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 7.40 0 0 0</pose>
+        <geometry><sphere><radius>3.25</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_12">
+      <pose>-14.51 -74.51 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.97 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>7.93</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 7.93 0 0 0</pose>
+        <geometry><sphere><radius>2.22</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_13">
+      <pose>-53.63 44.92 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.72 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>7.43</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 7.43 0 0 0</pose>
+        <geometry><sphere><radius>2.16</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_14">
+      <pose>-34.86 65.88 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 2.67 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>5.34</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 5.34 0 0 0</pose>
+        <geometry><sphere><radius>2.99</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_15">
+      <pose>-55.57 47.26 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 2.29 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>4.59</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 4.59 0 0 0</pose>
+        <geometry><sphere><radius>2.68</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_16">
+      <pose>-69.72 7.51 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 4.12 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>8.23</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 8.23 0 0 0</pose>
+        <geometry><sphere><radius>1.94</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_17">
+      <pose>-33.86 39.70 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.52 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>7.04</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 7.04 0 0 0</pose>
+        <geometry><sphere><radius>2.33</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_18">
+      <pose>19.34 -6.79 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 4.16 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>8.31</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 8.31 0 0 0</pose>
+        <geometry><sphere><radius>2.30</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_19">
+      <pose>38.66 20.35 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.85 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>7.70</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 7.70 0 0 0</pose>
+        <geometry><sphere><radius>2.44</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_20">
+      <pose>33.74 29.76 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 2.97 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>5.94</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 5.94 0 0 0</pose>
+        <geometry><sphere><radius>1.84</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_21">
+      <pose>69.44 32.04 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 2.51 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>5.02</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 5.02 0 0 0</pose>
+        <geometry><sphere><radius>3.04</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_22">
+      <pose>53.98 -7.79 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 2.72 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>5.44</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 5.44 0 0 0</pose>
+        <geometry><sphere><radius>2.32</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_23">
+      <pose>-63.45 -42.07 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 2.68 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>5.36</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 5.36 0 0 0</pose>
+        <geometry><sphere><radius>2.09</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_24">
+      <pose>-65.54 -5.13 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 2.54 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>5.07</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 5.07 0 0 0</pose>
+        <geometry><sphere><radius>3.06</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_25">
+      <pose>63.38 -34.05 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.43 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>6.86</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 6.86 0 0 0</pose>
+        <geometry><sphere><radius>2.66</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_26">
+      <pose>57.72 -3.88 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 4.01 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>8.02</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 8.02 0 0 0</pose>
+        <geometry><sphere><radius>1.91</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_27">
+      <pose>14.22 54.80 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 4.17 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>8.34</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 8.34 0 0 0</pose>
+        <geometry><sphere><radius>1.81</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_28">
+      <pose>3.26 -19.65 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.90 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>7.80</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 7.80 0 0 0</pose>
+        <geometry><sphere><radius>1.92</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+    <link name="tree_29">
+      <pose>-35.26 46.90 0 0 0 0</pose>
+      <visual name="trunk"><pose>0 0 3.17 0 0 0</pose>
+        <geometry><cylinder><radius>0.25</radius><length>6.35</length></cylinder></geometry>
+        <material><diffuse>0.35 0.25 0.15 1</diffuse></material></visual>
+      <visual name="crown"><pose>0 0 6.35 0 0 0</pose>
+        <geometry><sphere><radius>2.57</radius></sphere></geometry>
+        <material><diffuse>1 1 1 1</diffuse>
+          <pbr><metal><albedo_map>model://survey_town/textures/leaves.jpg</albedo_map><roughness>1</roughness></metal></pbr>
+        </material></visual>
+    </link>
+  </model>
+</sdf>

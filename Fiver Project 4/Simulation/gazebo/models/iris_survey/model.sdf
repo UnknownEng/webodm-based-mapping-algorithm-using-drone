@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <model name="iris_survey">
+    <include merge="true">
+      <uri>model://iris_with_ardupilot</uri>
+    </include>
+
+    <!-- Downward survey camera: same horizontal FOV as the Pi HQ camera (IMX477) + 6 mm lens.
+         Long image side across the flight direction (as assumed by path_planner.py). -->
+    <link name="survey_camera_link">
+      <pose>0 0 -0.08 0 1.5708 0</pose>
+      <inertial>
+        <mass>0.01</mass>
+        <inertia><ixx>1e-6</ixx><iyy>1e-6</iyy><izz>1e-6</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
+      </inertial>
+      <sensor name="survey_camera" type="camera">
+        <camera>
+          <horizontal_fov>0.9652</horizontal_fov>
+          <image><width>1280</width><height>960</height><format>R8G8B8</format></image>
+          <clip><near>0.05</near><far>600</far></clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>10</update_rate>
+        <visualize>false</visualize>
+        <topic>/survey_camera/image</topic>
+      </sensor>
+    </link>
+    <joint name="survey_camera_joint" type="fixed">
+      <parent>iris_with_standoffs::base_link</parent>
+      <child>survey_camera_link</child>
+    </joint>
+  </model>
+</sdf>
