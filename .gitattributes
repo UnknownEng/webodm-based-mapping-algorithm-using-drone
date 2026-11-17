@@ -1,0 +1,5 @@
+# Linux-side files must keep LF line endings, even when cloned on Windows
+*.sh      text eol=lf
+*.parm    text eol=lf
+*.sdf     text eol=lf
+*.config  text eol=lf

@@ -1,0 +1,16 @@
+# ---- Ground PC: path planner + WebODM upload ----
+numpy
+rasterio
+pyproj
+requests
+
+# ---- Raspberry Pi / drone: camera script ----
+opencv-python   # on Raspberry Pi OS prefer: sudo apt install python3-opencv
+piexif          # GPS EXIF tags in photos
+# picamera2     # Pi HQ camera (IMX477): sudo apt install python3-picamera2
+
+# ---- ROS1 (not pip) ----
+# mission.py, Check_*.py, images.py (geotags) need ROS Noetic + MAVROS:
+#   sudo apt install ros-noetic-mavros ros-noetic-mavros-extras
+#   sudo /opt/ros/noetic/lib/mavros/install_geographiclib_datasets.sh
+# ROS Noetic runs on Ubuntu 20.04 (Noetic reached end of life in May 2025).
