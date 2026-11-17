@@ -15,7 +15,7 @@ elevation model and textured 3D model in WebODM.
 
 ## Demo
 
-▶ **[Watch the full demo video (4 min 43 s, 1080p)](https://github.com/UnknownEng/webodm-based-mapping-algorithm-using-drone/releases/download/v1.0-simulation/survey_demo.mp4)** — the
+▶ **[Watch the full demo video (4 min 43 s)](https://github.com/UnknownEng/webodm-based-mapping-algorithm-using-drone/releases/download/v1.0-simulation/survey_demo.mp4)** — the
 complete process in simulation: planning, autonomous flight with live drone camera and ROS 2 terminals,
 WebODM processing, and the final maps. ([release page](https://github.com/UnknownEng/webodm-based-mapping-algorithm-using-drone/releases/tag/v1.0-simulation))
 
