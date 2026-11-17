@@ -1,120 +1,157 @@
-# webodm-based-mapping-algorithm-using-drone
+# Autonomous Drone Mapping with WebODM
 
-Drone mapping pipeline: **plan a survey → fly it automatically (ArduPilot + MAVROS) →
-take geotagged photos → build a 2D/3D map in WebODM**.
+**End-to-end aerial mapping pipeline:** plan a survey from a GeoTIFF → fly it autonomously with
+ArduPilot + MAVROS → capture geotagged photos at the right overlap → build an orthophoto,
+elevation model and textured 3D model in WebODM.
 
-```
-GeoTIFF of the area ──► path_planner.py ──► block_N.waypoints + survey_info.json
-                                                   │
-             drone (Pixhawk + Raspberry Pi)        ▼
-   mission.py  (flies the block)   +   images.py  (photo every N m, GPS-tagged + geo.txt)
-                                                   │
-                                                   ▼
-                     webodm_upload.py ──► orthophoto.tif, DSM, 3D model
-```
+![ArduPilot](https://img.shields.io/badge/ArduPilot-Copter-0b5cad)
+![ROS](https://img.shields.io/badge/ROS-Noetic%20%7C%20Jazzy-22314e)
+![MAVROS](https://img.shields.io/badge/MAVROS-1%20%7C%202-4a90d9)
+![WebODM](https://img.shields.io/badge/WebODM-OpenDroneMap-3fae49)
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776ab)
+![Status](https://img.shields.io/badge/status-simulation%20verified-orange)
 
-## Files (`Fiver Project 4/`)
+---
 
-| File | Runs on | Purpose |
+## Demo
+
+▶ **[Watch the full demo video (4 min 43 s, 1080p)](https://github.com/UnknownEng/webodm-based-mapping-algorithm-using-drone/releases/download/v1.0-simulation/survey_demo.mp4)** — the
+complete process in simulation: planning, autonomous flight with live drone camera and ROS 2 terminals,
+WebODM processing, and the final maps. ([release page](https://github.com/UnknownEng/webodm-based-mapping-algorithm-using-drone/releases/tag/v1.0-simulation))
+
+| Autonomous survey flight (Gazebo · drone camera · ROS 2 terminals) | Textured 3D model built by WebODM |
+|---|---|
+| ![Flight](Fiver%20Project%204/Simulation/demo_output/flight_preview.gif) | ![3D model](Fiver%20Project%204/Simulation/demo_output/model3d_preview.gif) |
+
+| Survey plan | Orthophoto (3 cm/px) | Elevation model (DSM) |
 |---|---|---|
-| `Final Rasp/path_planner.py` | ground PC | GeoTIFF (any CRS, e.g. WebODM orthophoto) → `.waypoints` files. Spacing computed from camera + overlap, only flies areas with image data, 2 waypoints per line. |
-| `Final Rasp/mission.py` | Pi (ROS) | Validates the file, checks GPS/battery/range, uploads mission, GUIDED → arm → takeoff → AUTO → RTL, with failsafes. |
-| `Final Rasp/images.py` | Pi (ROS) | Photo every N metres while in AUTO, GPS in EXIF + `geo.txt`. Pi camera, USB camera or ROS topic (Gazebo). |
-| `Final Rasp/Check_1.py` | Pi (ROS) | Read-only status monitor. |
-| `Final Rasp/Check_2.py` | Pi (ROS) | Arm 5 s / disarm (**props off**). |
-| `Final Rasp/Check_3.py` | Pi (ROS) | Take off to 5 m, hover, land. |
-| `webodm_upload.py` | ground PC | Upload photos to WebODM, wait, download orthophoto / DSM / model. |
-| `ROS2/mission.py`, `ROS2/images.py`, `ROS2/check_status.py` | ROS 2 Jazzy | Same as the ROS 1 scripts, for ROS 2 + MAVROS 2 (Ubuntu 24.04). Shared code in `ROS2/mavros_link.py`. |
-| `Simulation/gazebo/` | Ubuntu 24.04 | Full simulation: generated survey world, SITL launch, demo recording (see below). |
-| `Simulation/mission.py` | SITL | Same as `Final Rasp/mission.py`. |
-| `Simulation/video.py` | any | Record video from a camera or ROS image topic (Gazebo). |
+| ![Plan](Fiver%20Project%204/Simulation/demo_output/01_plan.png) | ![Orthophoto](Fiver%20Project%204/Simulation/demo_output/06_ortho.png) | ![DSM](Fiver%20Project%204/Simulation/demo_output/07_dsm.png) |
 
-`mission.py`, `Path Planner.py`, `video record.py` in the root and in `Updated/` are copies of the
-`Final Rasp` versions (`video record.py` = `images.py`).
+**Simulation results** (140 × 140 m area, 40 m altitude): 195 geotagged photos, **195 / 195 reconstructed**,
+orthophoto at 3 cm/px, tallest building measured **22.3 m vs 22.2 m true** (10 cm error),
+survey speed held at **5.0 m/s**. Full WebODM report: [`report.pdf`](Fiver%20Project%204/Simulation/demo_output/report.pdf).
 
-## Install
+---
+
+## How it works
+
+```
+ GeoTIFF of the area ──► path_planner.py ──► block_N.waypoints  (+ survey speed, photo distance)
+                                                     │
+            Drone: Pixhawk (ArduPilot) + Raspberry Pi │ MAVROS
+   mission.py ── checks · upload · take-off · AUTO · RTL
+   images.py  ── photo every N metres, GPS + lens in EXIF, geo.txt
+                                                     │
+                                                     ▼
+            webodm_upload.py ──► WebODM ──► orthophoto · DSM · textured 3D model · report
+```
+
+## Features
+
+**Mapping quality**
+- Line spacing and photo distance computed from the camera (sensor + lens) and target overlap (70 % side / 75 % front)
+- Flies only where the GeoTIFF has data; 2 waypoints per flight line; large areas split into battery-sized blocks
+- Survey speed written into the mission (`DO_CHANGE_SPEED`, default 5 m/s) to avoid motion blur
+- Photo every N metres while in AUTO — newest frame only, GPS + lens info in EXIF, `geo.txt` for WebODM
+- Uses the best resolution the camera really delivers (up to 12 MP on the IMX477)
+
+**Flight safety**
+- Waypoint file validated before take-off: altitude limits, no sea-level altitudes, maximum distance from the drone
+- Every command checked (mode, arming, take-off, upload); arming retried while showing ArduPilot's `PreArm` reason
+- Low battery or timeout → RTL · pilot changes mode → script hands over · Ctrl+C in flight → RTL
+- Works with old and new MAVROS (battery message type auto-detected) and requests telemetry streams itself
+
+**Tooling**
+- ROS 1 (Noetic) scripts for the Raspberry Pi and ROS 2 (Jazzy) versions
+- One-command WebODM upload, processing and download
+- Full software-in-the-loop simulation (ArduPilot SITL + Gazebo Harmonic) with automatic demo recording
+
+## Repository structure
+
+All code is in `Fiver Project 4/`:
+
+| Path | Runs on | Purpose |
+|---|---|---|
+| `Final Rasp/path_planner.py` | ground PC | GeoTIFF (any CRS) → `.waypoints` survey blocks |
+| `Final Rasp/mission.py` | Raspberry Pi (ROS 1) | Validates, uploads and flies a block with failsafes |
+| `Final Rasp/images.py` | Raspberry Pi (ROS 1) | Distance-triggered, geotagged camera (Pi camera / USB / ROS topic) |
+| `Final Rasp/Check_1.py` · `Check_2.py` · `Check_3.py` | Raspberry Pi (ROS 1) | Status monitor · arm/disarm test (props off) · 5 m hover test |
+| `webodm_upload.py` | ground PC | Upload photos + `geo.txt` to WebODM, wait, download results |
+| `ROS2/` | ROS 2 Jazzy | ROS 2 + MAVROS 2 versions of mission, camera and status |
+| `Simulation/gazebo/` | Ubuntu 24.04 / WSL2 | Simulation world, SITL launch, demo recording and video editing |
+| `Simulation/demo_output/` | — | Results of the simulated survey (previews, report) |
+
+`mission.py`, `Path Planner.py` and `video record.py` in `Fiver Project 4/` and `Updated/` are copies of the
+`Final Rasp/` versions (`video record.py` = `images.py`).
+
+## Requirements
+
+| Where | What |
+|---|---|
+| Drone | Pixhawk with ArduPilot Copter, Raspberry Pi, Raspberry Pi HQ camera (IMX477) or USB camera, GPS |
+| Raspberry Pi | ROS Noetic + MAVROS (Ubuntu 20.04), or ROS 2 Jazzy + MAVROS 2 (Ubuntu 24.04); `pip install piexif` |
+| Ground PC | Python 3.8+, `pip install -r requirements.txt`, [WebODM](https://github.com/OpenDroneMap/WebODM) |
+
+## Quick start
 
 ```bash
-pip install -r requirements.txt
+# 1. Plan (ground PC) - prints the photo distance to use
+python "Fiver Project 4/Final Rasp/path_planner.py" area.tif plans --altitude 40 --focal-mm 6 --speed 5
+
+# 2. Fly (Raspberry Pi, MAVROS running) - two terminals
+python3 images.py  --output ~/survey/block_1 --trigger-distance 7.85 --focal-mm 6
+python3 mission.py plans/block_1.waypoints
+
+# 3. Map (ground PC, WebODM running)
+python webodm_upload.py survey/block_1 --url http://localhost:8000 --user admin
 ```
-ROS 1: ROS Noetic + MAVROS (Ubuntu 20.04). ROS 2: ROS 2 Jazzy + `ros-jazzy-mavros` (Ubuntu 24.04).
 
-> ArduPilot only sends GPS / battery / altitude telemetry when a ground station asks for it.
-> The scripts request it through MAVROS (`set_stream_rate`), so they work with MAVROS alone.
+Before the first real flight follow **[FIELD_STEPS.md](FIELD_STEPS.md)**: bench test → camera walk test → hover → 2-line test → full block.
 
-## Use
+## Getting a good map
 
-1. **Plan** (ground PC):
-   ```bash
-   python "Final Rasp/path_planner.py" area.tif plans --altitude 40 --focal-mm 6 --block-size 200
-   ```
-   Prints the photo trigger distance and a time estimate per block.
-2. **Check the drone** (props off for Check_2): `Check_1.py`, `Check_2.py`, then `Check_3.py` in an open field.
-3. **Fly** (on the Pi, mavros running), two terminals:
-   ```bash
-   python3 images.py --output ~/survey/block_1 --trigger-distance 7.9
-   python3 mission.py plans/block_1.waypoints
-   ```
-4. **Map** (ground PC, WebODM running):
-   ```bash
-   python webodm_upload.py survey/block_1 --url http://localhost:8000 --user admin
-   ```
-
-## Getting a good WebODM map
-
-Why the first version gave poor WebODM results, and what now prevents it:
-
-| Problem in the first version | Effect in WebODM | Now |
-|---|---|---|
-| Photo every 2 s, whatever the speed | ~35 % front overlap at 10 m/s → holes, failed matching | Photo every N m (`--trigger-distance` from the planner, 75 % overlap) |
-| 24 m line spacing at 40 m | ~43 % side overlap | Spacing computed from the lens: 70 % side overlap |
-| No GPS in the photos | Map not georeferenced, wrong scale | GPS in EXIF + `geo.txt` |
-| No lens info in the photos | WebODM guesses the field of view → warped 3D | `FocalLength` + `FocalLengthIn35mmFilm` in EXIF |
-| Drone at default speed (often 10 m/s) | Motion blur | Mission sets the survey speed (`--speed`, default 5 m/s) |
-| Old buffered video frame saved | Photo position ≠ GPS tag | Always the newest frame |
-| Photos during take-off / turns / landing | Bad photos | Only while in AUTO and above `--min-alt` |
-
-Checklist:
-* Tell the planner **and** the camera your real lens: `--focal-mm` (6 mm = Pi 6 mm CS lens, 16 mm = telephoto). Wrong value = wrong overlap and a warped model.
-* Use the `--trigger-distance` the planner prints. Fly 3–5 m/s. Higher altitude = fewer photos and faster flights, but less detail per pixel.
-* Upload `geo.txt` with the photos (`webodm_upload.py` does this). For a fisheye/wide lens add the WebODM option `camera-lens: fisheye`.
-* The camera script prints the resolution it really uses — aim for at least 2 MP (it tries the full 12 MP first).
-
-## Simulation (Ubuntu 24.04 / WSL2: ROS 2 Jazzy + Gazebo Harmonic + ArduPilot SITL + WebODM)
-
-Everything lives in `Fiver Project 4/Simulation/gazebo/`:
-
-| File | Purpose |
+| Common cause of a poor WebODM result | How this project avoids it |
 |---|---|
-| `gen_world.py` | Generates the test world: 300 × 300 m textured town (roads, fields, cars, 14 buildings, 30 trees), an Iris drone with a downward camera matching the Pi HQ camera + 6 mm lens, and `area.tif` (the area to survey). |
-| `sim_env.sh` | Paths (ArduPilot, ardupilot_gazebo), Gazebo resource paths, GPU rendering on WSL2. |
-| `start_sim.sh` / `stop_sim.sh` | Start / stop Gazebo + ArduCopter SITL + MAVROS 2 + camera bridge (tmux session `survey`). |
-| `survey.parm` | SITL parameters: 5 m/s survey speed, RTL at 30 m, telemetry streams. |
-| `record_demo.sh` | Runs the whole pipeline (plan → fly → WebODM) on a virtual screen and records it. |
-| `make_video.py`, `render_model.py` | Edit the recording into the final video (with orthophoto, DSM and a 3D-model turntable). |
+| Photos on a timer → too little overlap at speed | Photo every N metres (75 % front overlap) |
+| Flight lines too far apart | Spacing from the lens (70 % side overlap) |
+| No GPS in the photos | GPS in EXIF + `geo.txt` |
+| No lens info → warped 3D | `FocalLength` + `FocalLengthIn35mmFilm` in EXIF |
+| Flying too fast → blur | Survey speed set in the mission (default 5 m/s) |
+| Stale buffered frames | Always the newest frame |
+| Photos during take-off, turns, landing | Only in AUTO and above `--min-alt` |
 
-Manual run:
+Tips: pass your **real lens** with `--focal-mm` to both the planner and the camera script; fly 3–5 m/s; for a
+fisheye lens add the WebODM option `camera-lens: fisheye`.
+
+## Simulation
+
+Runs the whole pipeline without hardware: ArduPilot SITL + Gazebo Harmonic + ROS 2 Jazzy + MAVROS 2 + WebODM
+(Ubuntu 24.04 or WSL2).
+
 ```bash
 cd "Fiver Project 4/Simulation/gazebo"
-python3 gen_world.py                     # once
-bash start_sim.sh                        # Gazebo window + SITL + MAVROS (HEADLESS=1 for no window)
-source sim_env.sh && cd ~/survey_sim
-python3 "project/Final Rasp/path_planner.py" area.tif plans --altitude 40
-python3 project/ROS2/images.py --source ros --image-topic /survey_camera/image --output photos --trigger-distance 7.85 &
-python3 project/ROS2/mission.py plans/block_1.waypoints
-python3 project/webodm_upload.py photos --url http://localhost:8000 --user admin
+python3 gen_world.py           # once: textured town, camera drone, area.tif
+bash start_sim.sh              # Gazebo + SITL + MAVROS + camera bridge (HEADLESS=1 for no window)
+bash record_demo.sh            # optional: plan → fly → WebODM, recorded to video
 bash stop_sim.sh
 ```
 
+Scripts in [`Simulation/gazebo/`](Fiver%20Project%204/Simulation/gazebo): `gen_world.py` (world generator),
+`sim_env.sh` (paths, GPU rendering on WSL2), `start_sim.sh` / `stop_sim.sh`, `survey.parm` (SITL parameters),
+`record_demo.sh` (records the full run), `make_video.py` + `render_model.py` (edit the demo video).
+
 ## Safety
 
-* mission.py refuses absolute (sea-level) altitudes, altitudes outside 5–120 m, and waypoints
-  more than 1.5 km away (all adjustable). It asks for confirmation before take-off (`--yes` skips).
-* Low battery or mission timeout → RTL. Pilot changes mode → the script stops and hands over.
-  Ctrl+C in flight → RTL.
-* Keep ArduPilot's own failsafes (battery, GPS/EKF, RC/GCS loss, geofence) configured — the
-  script is not a replacement for them. Always test in SITL first and follow local drone laws.
+This software flies a real aircraft. Keep ArduPilot's own failsafes (battery, RC/GCS loss, EKF/GPS, geofence)
+configured — the scripts do not replace them. Always keep a pilot ready on the RC transmitter, test in
+simulation first, and follow your local drone regulations.
+
+## Project status
+
+- ✅ Code reviewed and improved; unit-tested against a simulated ArduPilot (13 / 13 scenarios)
+- ✅ Full pipeline verified in SITL + Gazebo + WebODM
+- ⏳ Real-drone validation — follow [FIELD_STEPS.md](FIELD_STEPS.md)
 
 ## License
 
-No license file yet.
+No license has been chosen yet. Until one is added, all rights are reserved by the author.
